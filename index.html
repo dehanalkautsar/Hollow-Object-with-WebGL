@@ -5,6 +5,7 @@ Tugas Ca-Gaib 2021 -->
 <html>
      <head>
           <title>WebGL - Hollow Object</title>
+          <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
           <link rel="stylesheet" href="style.css">
      </head>
      <body onload="InitDemo();">
@@ -16,7 +17,48 @@ Tugas Ca-Gaib 2021 -->
                <i>13519200 / MDA</i>
           </div>
           <div class="margin2">
-               
+               <div class="slider1">
+                    <div class="text">x-Translate</div>
+                    <div class="slidecontainer">
+                         <input type="range" min="-1000" max="1000" value="0" class="slider" id="x-Translate">
+                         <p><span class="o11" id="11"></span></p>
+                    </div>
+               </div>
+               <div class="slider2">
+                    <div class="text">y-Translate</div>
+                    <div class="slidecontainer">
+                         <input type="range" min="-1000" max="1000" value="0" class="slider" id="y-Translate">
+                         <p><span class="o12" id="12"></span></p>
+                    </div>
+               </div>
+               <div class="slider3">
+                    <div class="text">Scale</div>
+                    <div class="slidecontainer">
+                         <input type="range" min="-1000" max="1000" value="0" class="slider" id="scale">
+                         <p><span class="o13" id="13"></span></p>
+                    </div>
+               </div>
+               <div class="slider4">
+                    <div class="text">x-Rotation</div>
+                    <div class="slidecontainer">
+                         <input type="range" min="-1000" max="1000" value="0" class="slider" id="x-Rotate">
+                         <p><span class="o21" id="21"></span></p>
+                    </div>
+               </div>
+               <div class="slider5">
+                    <div class="text">y-Rotation</div>
+                    <div class="slidecontainer">
+                         <input type="range" min="-1000" max="1000" value="0" class="slider" id="y-Rotate">
+                         <p><span class="o22" id="22"></span></p>
+                    </div>
+               </div>
+               <div class="slider6">
+                    <div class="text">z-Rotation</div>
+                    <div class="slidecontainer">
+                         <input type="range" min="-1000" max="1000" value="0" class="slider" id="z-Rotate">
+                         <p><span class="o23" id="23"></span></p>
+                    </div>
+               </div>
           </div>
           <script src = "gl-matrix.js"></script>
           <script src = "scripts.js"></script>

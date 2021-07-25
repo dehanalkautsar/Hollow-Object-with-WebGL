@@ -3,6 +3,10 @@
 // Tugas Ca-Gaib 2021
 // insipiration: https://www.youtube.com/watch?v=kB0ZVUrI4Aw&ab_channel=IndigoCode
 
+/////////////////////////////////////////////////////////
+//////////////////  SCRIPT FOR CANVAS   /////////////////
+/////////////////////////////////////////////////////////
+
 var vertexShaderText =
 [
      'precision mediump float;',
@@ -899,3 +903,45 @@ var InitDemo = function () {
      
      gl.drawElements(gl.TRIANGLES, boxIndices.length, gl.UNSIGNED_SHORT, 0);
 };
+
+
+/////////////////////////////////////////////////////////
+//////////////////  SCRIPT FOR SLIDER   /////////////////
+/////////////////////////////////////////////////////////
+
+var slider11 = document.getElementById("x-Translate");
+var output11 = document.getElementById("11");
+output11.innerHTML = (slider11.value/1000).toFixed(3);
+slider11.oninput = function() {
+	output11.innerHTML = (this.value/1000).toFixed(3);
+}
+var slider12 = document.getElementById("y-Translate");
+var output12 = document.getElementById("12");
+output12.innerHTML = (slider12.value/1000).toFixed(3);
+slider12.oninput = function() {
+	output12.innerHTML = (this.value/1000).toFixed(3);
+}
+var slider13 = document.getElementById("scale");
+var output13 = document.getElementById("13");
+output13.innerHTML = (slider13.value/1000).toFixed(3);
+slider13.oninput = function() {
+	output13.innerHTML = (this.value/1000).toFixed(3);
+}
+var slider21 = document.getElementById("x-Rotate");
+var output21 = document.getElementById("21");
+output21.innerHTML = (slider21.value/1000).toFixed(3);
+slider21.oninput = function() {
+	output21.innerHTML = (this.value/1000).toFixed(3);
+}
+var slider22 = document.getElementById("y-Rotate");
+var output22 = document.getElementById("22");
+output22.innerHTML = (slider22.value/1000).toFixed(3);
+slider22.oninput = function() {
+	output22.innerHTML = (this.value/1000).toFixed(3);
+}
+var slider23 = document.getElementById("z-Rotate");
+var output23 = document.getElementById("23");
+output23.innerHTML = (slider23.value/1000).toFixed(3);
+slider23.oninput = function() {
+	output23.innerHTML = (this.value/1000).toFixed(3);
+}
