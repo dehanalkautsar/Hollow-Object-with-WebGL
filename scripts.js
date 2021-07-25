@@ -37,6 +37,11 @@ var fragmentShaderText =
      '}'
 ].join('\n');
 
+var eye = [6,0,0];
+var center = [0,0,0];
+var up = [0,1,0];
+var scaleRad = 25;
+
 var InitDemo = function () {
      //testing
      console.log('This is working');
@@ -894,8 +899,8 @@ var InitDemo = function () {
      var projMatrix = new Float32Array(16);
 
      mat4.identity(worldMatrix);
-     mat4.lookAt(viewMatrix, [4,3,4], [0,0,0], [0,1,0]);
-     mat4.perspective(projMatrix, glMatrix.toRadian(25), canvas.width / canvas.height, 0.1, 1000.0);
+     mat4.lookAt(viewMatrix, eye, center, up);
+     mat4.perspective(projMatrix, glMatrix.toRadian(scaleRad), canvas.width / canvas.height, 0.1, 1000.0);
 
      gl.uniformMatrix4fv(matWorldUniformLocation, gl.FALSE, worldMatrix);
      gl.uniformMatrix4fv(matViewUniformLocation, gl.FALSE, viewMatrix);
@@ -909,39 +914,116 @@ var InitDemo = function () {
 //////////////////  SCRIPT FOR SLIDER   /////////////////
 /////////////////////////////////////////////////////////
 
+function degrees_to_radians(degrees)
+{
+	var pi = Math.PI;
+	return degrees * (pi/180);
+}
+
+translateMode = false;
+rotateMode = true;
+
 var slider11 = document.getElementById("x-Translate");
 var output11 = document.getElementById("11");
 output11.innerHTML = (slider11.value/1000).toFixed(3);
+eye[2] = (6)*slider11.value/5000;
+center[2] = (6)*slider11.value/5000;
 slider11.oninput = function() {
+	if (rotateMode) {
+		slider21.value = 0;
+		slider22.value = 0;
+		output21.innerHTML = (slider21.value);
+		output22.innerHTML = (slider22.value);
+		eye = [6,0,0];
+		center = [0,0,0];
+		rotateMode = false;
+	}
+	translateMode = true;
 	output11.innerHTML = (this.value/1000).toFixed(3);
+	eye[2] = (6)*this.value/5000;
+	center[2] = (6)*this.value/5000;
+
+	InitDemo();
 }
 var slider12 = document.getElementById("y-Translate");
 var output12 = document.getElementById("12");
 output12.innerHTML = (slider12.value/1000).toFixed(3);
+eye[1] = (-6)*slider12.value/5000;
+center[1] = (-6)*slider12.value/5000;
 slider12.oninput = function() {
+	if (rotateMode) {
+		slider21.value = 0;
+		slider22.value = 0;
+		output21.innerHTML = (slider21.value);
+		output22.innerHTML = (slider22.value);
+		eye = [6,0,0];
+		center = [0,0,0];
+		rotateMode = false;
+	}
+	translateMode = true;
 	output12.innerHTML = (this.value/1000).toFixed(3);
+	eye[1] = (-6)*this.value/5000;
+	center[1] = (-6)*this.value/5000;
+
+	InitDemo();
 }
+
 var slider13 = document.getElementById("scale");
 var output13 = document.getElementById("13");
-output13.innerHTML = (slider13.value/1000).toFixed(3);
-slider13.oninput = function() {
-	output13.innerHTML = (this.value/1000).toFixed(3);
+output13.innerHTML = (slider13.value);
+scaleRad = slider13.value/20;
+if (scaleRad == 0) {
+	scaleRad = 0.05
 }
+slider13.oninput = function() {
+	output13.innerHTML = (this.value);
+	scaleRad = this.value/20;
+	if (scaleRad == 0) {
+		scaleRad = 0.05
+	}
+	InitDemo();
+}
+
 var slider21 = document.getElementById("x-Rotate");
 var output21 = document.getElementById("21");
-output21.innerHTML = (slider21.value/1000).toFixed(3);
+output21.innerHTML = (slider21.value);
+eye[0] = Math.cos(degrees_to_radians(slider21.value))*(6);
+eye[2] = Math.sin(degrees_to_radians(slider21.value))*(-6);
 slider21.oninput = function() {
-	output21.innerHTML = (this.value/1000).toFixed(3);
+	if (translateMode) {
+		slider11.value = 0;
+		slider12.value = 0;
+		output11.innerHTML = (slider11.value/1000).toFixed(3);
+		output12.innerHTML = (slider12.value/1000).toFixed(3);
+		eye = [6,0,0];
+		center = [0,0,0];
+		translateMode = false;
+	}
+	rotateMode = true;
+	output21.innerHTML = (this.value);
+	eye[0] = Math.cos(degrees_to_radians(this.value))*(6);
+	eye[2] = Math.sin(degrees_to_radians(this.value))*(-6);
+	// console.log(eye);
+	InitDemo();
 }
 var slider22 = document.getElementById("y-Rotate");
 var output22 = document.getElementById("22");
-output22.innerHTML = (slider22.value/1000).toFixed(3);
+output22.innerHTML = (slider22.value);
+eye[1] = Math.sin(degrees_to_radians(slider22.value))*(6);
 slider22.oninput = function() {
-	output22.innerHTML = (this.value/1000).toFixed(3);
-}
-var slider23 = document.getElementById("z-Rotate");
-var output23 = document.getElementById("23");
-output23.innerHTML = (slider23.value/1000).toFixed(3);
-slider23.oninput = function() {
-	output23.innerHTML = (this.value/1000).toFixed(3);
+	if (translateMode) {
+		slider11.value = 0;
+		slider12.value = 0;
+		output11.innerHTML = (slider11.value/1000).toFixed(3);
+		output12.innerHTML = (slider12.value/1000).toFixed(3);
+		eye = [6,0,0];
+		center = [0,0,0];
+		translateMode = false;
+	}
+	rotateMode = true;
+	output22.innerHTML = (this.value);
+	// eye[0] = Math.cos(degrees_to_radians(this.value))*(6);
+	eye[1] = Math.sin(degrees_to_radians(this.value))*(6);
+	// console.log(eye);
+	InitDemo();
 }
