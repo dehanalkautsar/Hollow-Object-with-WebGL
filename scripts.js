@@ -1,7 +1,6 @@
 // NIM  : 13519200
 // Nama : Muhammad Dehan Al Kautsar
 // Tugas Ca-Gaib 2021
-// insipiration: https://www.youtube.com/watch?v=kB0ZVUrI4Aw&ab_channel=IndigoCode
 
 /////////////////////////////////////////////////////////
 //////////////////  SCRIPT FOR CANVAS   /////////////////
