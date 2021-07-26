@@ -1049,9 +1049,16 @@ function editColor(r,g,b,boxVertices) {
 	for (let i=0; i<12; i++) {
 		for (let j=0; j<6; j++) {
 			for (let k=0; k<6; k++) {
-				boxVertices[(i*144)+(j*24)+(k*6)+3] = r;
-				boxVertices[(i*144)+(j*24)+(k*6)+4] = g;
-				boxVertices[(i*144)+(j*24)+(k*6)+5] = b;
+				if (j==2 || j==4 || j==5) {
+					boxVertices[(i*144)+(j*24)+(k*6)+3] = r<=0.9 ? r+0.1:1;
+					boxVertices[(i*144)+(j*24)+(k*6)+4] = g;
+					boxVertices[(i*144)+(j*24)+(k*6)+5] = b>=0.1 ? b-0.1:0;
+				}
+				else {
+					boxVertices[(i*144)+(j*24)+(k*6)+3] = r;
+					boxVertices[(i*144)+(j*24)+(k*6)+4] = g;
+					boxVertices[(i*144)+(j*24)+(k*6)+5] = b;
+				}
 			}
 		}
 	}
